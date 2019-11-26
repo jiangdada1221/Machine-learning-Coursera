@@ -1,0 +1,142 @@
+* roundn(a,-1) 可以保留小数 -1 是位数
+>> format long  // format short (4位小数)
+
+>> a = [1 2 3];
+>> reshape(a,3,1)
+    1
+    2
+    3
+
+>> v = 1 : 0.1 : 2
+1 1.1 .....
+
+>> rand(3,3)   #random number matrix
+>> randn(3,3)  #random number from guassian
+
+>> pwd  #look the current directory
+>> cd 'xxx'
+
+>> who # show variables in the current scope
+>> whos # also show the information of variables
+
+>> clear xxx  #get rid of xxx
+
+##### Save
+>> v = ones(10,1);
+>> save jyp.mat v;
+>> save jyp.txt v -ascii; #save as human readable data, also can be loaded
+
+
+>> A([1 3],:)  # means get every element in the 1 and 3 row
+
+###### Append
+>> A = [A,[1;2;3]] # append 1 2 3 to the A to the right
+>> C = [A B]  # concatenate A and B  to the right (equals to [A,B])
+>> C = [A ; B] # B to the bottom
+
+### Computation
+>> A .* B  # * of corresponding element in A and B
+>> a' # a transpose
+>> [val, index] = max(a)
+  val = 15
+  ind = 2
+
+### Find value
+>> a = [1 15 2 0.5];
+>> a < 3
+  1 0 1 1
+>> find(a < 3)
+  1 3 4
+
+### max
+>> A = 8 1 6
+       3 5 7
+       4 9 2
+>> max(A,[],1)
+    8 9 7   #max value in each column
+>> max(A,[],2)
+    8
+    7
+    9    # max value in each row
+>> max(max(A)) # returns the max value of A
+
+>> flipud # flip array in up/down direction
+
+
+##### Plot
+>> t = [0:0.01:0.98];
+>> y1 = sin(2*pi*4*t);
+>> plot(t,y1);
+>> hold on; # let the next graph not to cover the first one
+>> y2 = cos(2*pi*4*t);
+>> plot(t,y2,'r'); #red color
+>> xlabel('time');
+>> ylabel('value');
+>> legend('sin','cos');
+>> title('my plot');
+
+### set the scale
+>> axis([0.5 1 -1 1])  # x:0.5~1 y:-1~1
+
+#### Save the image
+>> print -dpng 'myplot.png' ;
+>> print('figureName','type such as -dpng');
+
+>> subplot(1,2,1) # divides the grid to 1 * 2 and current is the first
+>> clf; #clear the image
+
+>> a = magic(5);
+>> imagesc(a);
+>> (or) imagesc(a), colorbar, colormap gray;
+
+### add search path
+>> addpath('path1');
+>> cd 'path2 a different directory'; # you can still use function in path1 while directory is in path2
+
+#### surf command
+>> surf(x,y,z')  #because by default, surf function plots ordered pairs
+(x(j),y(i),f(i,j)) rather than (x(i),y(j),f(i,j)), so we need to transpose z !!!!
+
+## contour(X,Y,Z)
+>> try to use contour(X,Y,Z,logspace(a,b,n))
+logspace means points between 10^a, 10^b n is the number of points
+
+
+## fprintf
+>> fprintf(' x = [%.0f %.0f], y = %.0f \n', [X(1:10,:) y(1:10,:)]');    can show the matrix
+
+>> mean(X,1) mean for each column
+
+### std function
+>> std(X)  means normalized by n-1  by each column
+>> std(X,flag) flag = 0 normalize by n-1 flag = 1 then by n
+>> std(X,flag,dim) dim = 1 std by column dim = 2 std by rows
+
+>> numel(X)  return the number of elements in X
+
+>> plotData(X,y) :plotData(x,y) plots the data points with + for the positive examples
+    and o for the negative examples. X is assumed to be a Mx2 matrix
+
+>> function 
+>> randperm(N) returns a vector containing random permutations from integers 1:N (inclusive)
+
+>>> What is a matlab list??? 
+% because : a=['123','45'] -> '12345'; a(1) -> '1' so we need a list to store '123' and '45' seperately
+
+>>> [str,remain] = strtok(STR,DELIMITER) str will be the first word 
+s = '  This is a simple example.';
+        [token, remain] = strtok(s)
+ 
+    returns
+ 
+        token = 
+        This
+        remain = 
+         is a simple example.     % this function is helpful to do processing for each word
+>>> regexprep(x,正则表达式) 
+
+>>> a = [1;2;3]   idx = [3;2;1;2;3]; then a(idx,:) will return 5*1
+
+
+
+
